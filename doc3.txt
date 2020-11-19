@@ -1,0 +1,6 @@
+The first C with Classes compiler was called Cfront, which was derived from a C 
+compiler called CPre. It was a program designed to translate C with Classes 
+code to ordinary C. A rather interesting point worth noting is that
+ Cfront was written mostly in C with Classes, making it a self-hosting compiler 
+ (a compiler that can compile itself). Cfront would later be abandoned 
+ in 1993 after it became difficult to integrate new features into it, namely C++ exceptions

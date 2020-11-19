@@ -10,7 +10,7 @@ class RabbitConfigure():
 class RabbitMq():
     def __init__(self,config):
         self.config=config
-        self.connection = connection =  pika.BlockingConnection(pika.ConnectionParameters(host=self.config.host))
+        self.connection  =  pika.BlockingConnection(pika.ConnectionParameters(host=self.config.host))
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue=self.config.queue)
     

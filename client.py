@@ -2,13 +2,14 @@ import pika
 import uuid
 
 class ClientConfig():
-    def __init__(self,host,queue):
+    def __init__(self,host="localhost",queue="default",routing_key="rpc"):
         self.host = host
         self.queue =  queue
+        self.routing_key = routing_key
 
 class TfIdfClient():
-    def __init__(self):
-        def __init__(self,config):
+    
+    def __init__(self,config):
         self.config = config
         self.connection =  pika.BlockingConnection(pika.ConnectionParameters(host=self.config.host))
         self.channel = self.connection.channel()
@@ -29,8 +30,8 @@ class TfIdfClient():
         self.corr_id = str(uuid.uuid4())
         self.channel.basic_publish(
             exchange="",
-            routing_key = self.routing_key,
-            properties = pika.BaiscProperties(
+            routing_key = self.config.routing_key,
+            properties = pika.BasicProperties(
                 reply_to = self.callback_queue,
                 correlation_id =  self.corr_id,
             ),
@@ -40,3 +41,9 @@ class TfIdfClient():
             self.connection.process_data_events()
         return self.response
 
+
+clientconfig = ClientConfig()
+
+tfidfobj = TfIdfClient(clientconfig)
+response =  tfidfobj.call("doc3.txt")
+print(response)

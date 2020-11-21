@@ -20,8 +20,7 @@ def compute(filename):
 
     transform = TfidfTransformer()
     transform_weights = transform.fit_transform(sf)
-    weights = np.asarray(transformed_weights.mean(axis=0)).ravel().tolist()
+    weights = np.asarray(transform_weights.mean(axis=0)).ravel().tolist()
     weights_df = pd.DataFrame({'term': cov.get_feature_names(), 'weight': weights})
-
     return weights_df.sort_values(by='weight', ascending=False).head(10)
 

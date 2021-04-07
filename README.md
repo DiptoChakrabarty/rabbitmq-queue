@@ -60,7 +60,7 @@
 - Client creates an anonymous  callback queue
 - Client provides required details in the queue
 - Server picks up the required data from the client queue and does its processing (in this case tf idf of a document)
-- The processed result is retured in another queue from where it is retured to client
+- The processed result is retured in another queue from where it is returned to client
 
 Run python3 server.py
 
